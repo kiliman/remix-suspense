@@ -1,36 +1,17 @@
-# Welcome to Remix + Vite!
+# Remix Suspense
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
+This example shows how to use `<Suspense key={location.pathname}>` to ensure
+that the fallback component is displayed when navigating to the same route
+component but with different URL. For example '/defer/123' => `/defer/456`
 
-## Development
+If you're rendering the same route but with different data, Remix does not
+unmount your component before rendering. Just like in regular React, it's
+fetching the data and updating context and React is responsible for rendering.
 
-Run the Vite dev server:
+To ensure the Suspense boundary is unmounted on route change, I recommend
+setting a key equal to the current path.
 
-```shellscript
-npm run dev
+```ts
+const location = useLocation()
+return <Suspense key={location.pathname}>...
 ```
-
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
