@@ -15,3 +15,5 @@ setting a key equal to the current path.
 const location = useLocation()
 return <Suspense key={location.pathname}>...
 ```
+
+⚡️ StackBlitz https://stackblitz.com/github/kiliman/remix-suspense
